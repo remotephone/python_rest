@@ -1,18 +1,25 @@
+
+# import your modules
 from flask import Flask, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
 from flask.ext.jsonpify import jsonify
 
+# Connect to the engine yuo should have locally. This DB should be in the same
+# folder you're working in. 
 db_connect = create_engine('sqlite:///chinook.db')
 app = Flask(__name__)
 api = Api(app)
 
+# This is the first class
 class Employees(Resource):
     def get(self):
-        conn = db_connect.connect() # connect to the database
+        # connect to the database.
+        conn = db_connect.connect()
         # This line performs the query and returns json result
         query = conn.execute("select * from employees")
+        # For each employee, print the info in the database
         return {'employees': [i[0] for i in query.cursor.fetchall()]}
 
 
