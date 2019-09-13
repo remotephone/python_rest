@@ -4,7 +4,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
-from flask.ext.jsonpify import jsonify
+from flask_jsonpify import jsonify
 
 # Connect to the engine yuo should have locally. This DB should be in the same
 # folder you're working in. 
